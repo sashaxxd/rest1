@@ -65,30 +65,30 @@ class TestController extends ActiveController
 
     }
 
-    public function auth($username, $password)
-    {
-        $user = User::findOne(['username' => $username]);
+//    public function auth($username, $password)
+//    {
+//        $user = User::findOne(['username' => $username]);
+//
+//        if($user){
+//            return $user->validatePassword($password) ? $user : null;
+//        }
+//        else{
+//            echo 'Не верно';
+//            exit();
+//        }
+//
+//    }
 
-        if($user){
-            return $user->validatePassword($password) ? $user : null;
-        }
-        else{
-            echo 'Не верно';
-            exit();
-        }
-
-    }
-
-    public function init()
-    {
-        parent::init();
-        \Yii::$app->user->enableSession = false;
-    }
-
-
-    public function actionInit(){
-        return 124;
-    }
+//    public function init()
+//    {
+//        parent::init();
+//        \Yii::$app->user->enableSession = false;
+//    }
+//
+//
+//    public function actionInit(){
+//        return 124;
+//    }
 
 
 }
