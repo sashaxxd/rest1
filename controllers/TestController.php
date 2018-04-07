@@ -35,7 +35,7 @@ class TestController extends ActiveController
          */
         $behaviors = parent::behaviors();
         $behaviors['authenticator']['class'] = QueryParamAuth::className();
-        $behaviors['authenticator']['tokenParam'] = 'token';
+        $behaviors['authenticator']['tokenParam'] = 'tokens';
         return $behaviors;
 
     }
