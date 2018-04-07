@@ -33,9 +33,34 @@ class TestController extends ActiveController
         /**
          * Через  QueryParamAuth
          */
+//        $behaviors = parent::behaviors();
+//        $behaviors['authenticator']['class'] = QueryParamAuth::className();
+//        $behaviors['authenticator']['tokenParam'] = 'tokens';
+//        return $behaviors;
+        /**
+         * Через  https://github.com/gud3/yii2-rest-auth
+         */
+
+
+//        $behaviors = parent::behaviors();
+//
+//        $auth = [];
+//
+//        if (\gud3\restAuth\CheckToken::isAuth()) {
+//            array_push($auth, 'index', 'create');
+//        }
+//
+//        $behaviors['authenticator']['class'] = \gud3\restAuth\CheckToken::className();
+//        $behaviors['authenticator']['only'] = $auth;
+//
+//        return $behaviors;
+        /**
+         * Через  хз
+         */
+
         $behaviors = parent::behaviors();
         $behaviors['authenticator']['class'] = QueryParamAuth::className();
-        $behaviors['authenticator']['tokenParam'] = 'tokens';
+        $behaviors['authenticator']['tokenParam'] = 'token';
         return $behaviors;
 
     }
@@ -61,7 +86,9 @@ class TestController extends ActiveController
     }
 
 
-
+    public function actionInit(){
+        return 124;
+    }
 
 
 }

@@ -39,6 +39,24 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
     {
         // TODO: Implement validateAuthKey() method.
     }
+    /**
+     * Через  QueryParamAuth
+     */
+//    public static function findIdentityByAccessToken($token, $type = null)
+//    {
+//        return static::findOne(['authKey' => $token]);
+//    }
+
+    /**
+     * Через  https://github.com/gud3/yii2-rest-auth
+     */
+//    public static function findIdentityByAccessToken($id, $type = null)
+//    {
+//        return static::find()->where(['id' => $id])->one() || false;
+//    }
+    /**
+     * Через  Хз
+     */
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
