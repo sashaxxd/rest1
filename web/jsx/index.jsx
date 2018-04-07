@@ -1,35 +1,16 @@
 class Test extends React.Component{
 
-    constructor(props) {
-        super(props);
 
-        this.state = {person: []};
+    render () {
+
+        const PLACES = [
+            { name: "Palo Alto", zip: "94303" },
+            { name: "San Jose", zip: "94088" },
+            { name: "Santa Cruz", zip: "95062" },
+            { name: "Honolulu", zip: "96803" }
+        ];
+        return <div><pre>{JSON.stringify(PLACES, null, 2) }</pre></div>;
     }
-
-    componentDidMount() {
-        this.UserList();
-    }
-
-    UserList() {
-        $.getJSON('http://rest1/test?token=admin')
-            .then(({ results }) => this.setState({ name: results }));
-    }
-
-    render() {
-        const persons = this.state.name.map((item, i) => (
-            <div>
-                <h1>{ item.name.first }</h1>
-                <span>{ item.cell }, { item.id }</span>
-            </div>
-        ));
-
-        return (
-            <div id="layout-content" className="layout-content-wrapper">
-                <div className="panel-list">{ name }</div>
-            </div>
-        );
-    }
-
 
 }
 
