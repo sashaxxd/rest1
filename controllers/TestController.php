@@ -19,6 +19,10 @@ class TestController extends ActiveController
 {
     public $modelClass = 'app\models\Test';
 
+
+    public $enableCsrfValidation = false;
+
+
     public function behaviors()
     {
         /**
@@ -61,7 +65,20 @@ class TestController extends ActiveController
         $behaviors = parent::behaviors();
         $behaviors['authenticator']['class'] = QueryParamAuth::className();
         $behaviors['authenticator']['tokenParam'] = 'token';
+
+
+        $behaviors['corsFilter'] = [
+
+                'class' => \yii\filters\Cors::className(),
+
+        ];
+
+
+
+
         return $behaviors;
+
+
 
     }
 

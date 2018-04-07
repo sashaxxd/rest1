@@ -1,122 +1,50 @@
-class Menu extends React.Component {
+class Test extends React.Component {
+
     constructor(props) {
         super(props);
-
-        this.buttonMenuClick = this.buttonMenuClick.bind(this);
-
-        this.state = {
-
-            isCardView1: false
-        };
+        this.state = {person: []};
     }
 
-    buttonMenuClick() {
+    componentDidMount() {
+        //For our first load.
+        this.UserList(this.props.group); //maybe something like "groupOne"
+    }
 
-        this.setState({ isCardView1: !this.state.isCardView1 });
-        $(".ResponsiveMenu1").slideToggle(400);
+    componentWillReceiveProps(nextProps) {
+
+        // Assuming parameter comes from url.
+        // let group = window.location.toString().split("/")[*indexParameterLocated*];
+        // this.UserList(group);
+
+        // Assuming parameter comes from props that from parent component.
+        let group = nextProps.group; // Maybe something like "groupTwo"
+        this.UserList(group);
+
+    }
+
+    UserList(group) {
+        $.getJSON('http://rest1/test?token=admin/' + group)
+            .then(({ results }) => this.setState({ person: results }));
     }
 
     render() {
+        const persons = this.state.person.map((item, i) => (
+        <div>
+        <h1>{ item.name.first }</h1>
+        <span>{ item.cell }, { item.email }</span>
+        </div>
+    ));
 
-        let x = React.createElement(
-            "div",
-            { id: "LayoutGrid1" },
-            React.createElement(
-                "div",
-                { className: "row" },
-                React.createElement(
-                    "div",
-                    { className: "col-1" },
-                    React.createElement(
-                        "div",
-                        { id: "site_ResponsiveMenu1" },
-                        React.createElement(
-                            "label",
-                            { className: "toggle", htmlFor: "ResponsiveMenu1-submenu", id: "ResponsiveMenu1-title" },
-                            React.createElement(
-                                "div",
-                                null,
-                                "\u041C\u0435\u043D\u044E"
-                            ),
-                            " ",
-                            React.createElement(ButtonMenu, { ButtonState: this.state.isCardView1 })
-                        ),
-                        React.createElement(Input, { func: this.buttonMenuClick }),
-                        React.createElement(
-                            "ul",
-                            { className: "ResponsiveMenu1", id: "ResponsiveMenu1" },
-                            React.createElement(
-                                "li",
-                                null,
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"
-                                )
-                            ),
-                            React.createElement(
-                                "li",
-                                null,
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "\u041E\xA0\u043D\u0430\u0441"
-                                )
-                            ),
-                            React.createElement(
-                                "li",
-                                null,
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B"
-                                )
-                            )
-                        )
-                    )
-                )
-            )
-        );
-
-        return React.createElement(
-            "div",
-            { id: "site_LayoutGrid1" },
-            x
-        );
+        return (
+            <div id="layout-content" className="layout-content-wrapper">
+            <div className="panel-list">{ persons }</div>
+            </div>
+    );
     }
+
 }
 
-class Input extends React.Component {
-    render() {
-        return React.createElement("input", { type: "checkbox", id: "ResponsiveMenu1-submenu", onClick: this.props.func });
-    }
-}
-
-class ButtonMenu extends React.Component {
-    render() {
-        let indents = [];
-
-        for (let i = 0; i < 3; i++) {
-            indents.push(React.createElement(
-                "span",
-                { key: i },
-                "\xA0"
-            ));
-        }
-        let sp = React.createElement(
-            "span",
-            { id: "ResponsiveMenu1-icon" },
-            this.props.ButtonState ? React.createElement(
-                "div",
-                null,
-                React.createElement("div", { className: "m_close" })
-            ) : indents
-        );
-        return sp;
-    }
-}
-
-ReactDOM.render(React.createElement(Menu, null), document.getElementById("menu"));
+ReactDOM.render(React.createElement(Test, null), document.getElementById("menu"));
 
 // class IconButton extends React.Component {
 //     constructor(props) {
