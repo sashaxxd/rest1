@@ -7,7 +7,7 @@ $("#but").click(function(e) {
                                method: 'get',
                                data: {token:'admin'},
                                success: function (data) {
-                                   console.log(data);
+                                   console.log(data[0]['id']);
 
                                }
                            });
