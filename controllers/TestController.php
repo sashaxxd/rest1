@@ -28,12 +28,12 @@ class TestController extends ActiveController
         /**
          * Через  HttpBasicAuth
          */
-//        $behaviors = parent::behaviors();
-//        $behaviors['authenticator'] = [
-//            'class' => HttpBasicAuth::className(),
-//            'auth' => [$this, 'auth']
-//        ];
-//        return $behaviors;
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => HttpBasicAuth::className(),
+            'auth' => [$this, 'auth']
+        ];
+        return $behaviors;
         /**
          * Через  QueryParamAuth
          */
@@ -62,39 +62,39 @@ class TestController extends ActiveController
          * Через  хз
          */
 
-        $behaviors = parent::behaviors();
-        $behaviors['authenticator']['class'] = QueryParamAuth::className();
-        $behaviors['authenticator']['tokenParam'] = 'token';
-
-
-        $behaviors['corsFilter'] = [
-
-                'class' => \yii\filters\Cors::className(),
-
-        ];
-
-
-
-
-        return $behaviors;
+//        $behaviors = parent::behaviors();
+//        $behaviors['authenticator']['class'] = QueryParamAuth::className();
+//        $behaviors['authenticator']['tokenParam'] = 'token';
+//
+//
+//        $behaviors['corsFilter'] = [
+//
+//                'class' => \yii\filters\Cors::className(),
+//
+//        ];
+//
+//
+//
+//
+//        return $behaviors;
 
 
 
     }
 
-//    public function auth($username, $password)
-//    {
-//        $user = User::findOne(['username' => $username]);
-//
-//        if($user){
-//            return $user->validatePassword($password) ? $user : null;
-//        }
-//        else{
-//            echo 'Не верно';
-//            exit();
-//        }
-//
-//    }
+    public function auth($username, $password)
+    {
+        $user = User::findOne(['username' => $username]);
+
+        if($user){
+            return $user->validatePassword($password) ? $user : null;
+        }
+        else{
+            echo 'Не верно';
+            exit();
+        }
+
+    }
 
 //    public function init()
 //    {
